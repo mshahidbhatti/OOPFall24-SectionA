@@ -1,6 +1,6 @@
 public class Demo{
 
-	public static void main(String args[]){
+	 void main(){
 
 		int i=10;
 

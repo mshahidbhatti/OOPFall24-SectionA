@@ -5,6 +5,11 @@ public class Rectangle{
 	private double width;
 
 
+	private int x;
+	private int y;
+
+
+
 	//methods
 
 
