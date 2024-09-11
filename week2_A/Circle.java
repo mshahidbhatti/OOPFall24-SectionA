@@ -9,6 +9,8 @@ public class Circle{
 		centerPoint=p;
 		
 	}
+
+
 	Point getPoint(){
 		return centerPoint;
 	}
