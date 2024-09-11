@@ -1,34 +1,23 @@
-class Demo{
+public class Demo{
 
-	public static void main(String args[]){
-		
-		Point p=new Point();
+public static void main(String args[]){
 
-		p.setX(20);
-		p.setY(20);
+	/*
+	A obj=new A();
+	A obj1=new A();
+	A obj2=new A();
+	System.out.println(obj);
+	System.out.println(obj1);
+	System.out.println(obj2);
+	obj.A(); */
 
-		Circle c1=new Circle();
-		c1.setRadius(100.0);
-		
-		
-		
-		c1.setCenter(new Point());	
-		c1.getCenter().setX(60);
-		c1.getCenter().setY(60);
+	Circle c1=new Circle(8888);
 
-		c1.display();
-
-		Rectangle r1 =new Rectangle();
-		r1.setHeight(30.0);
-		r1.setWidth(20.0);
-
-		r1.setLeftTopCorner(p);
-
-		r1.display();
-			
+	Date d=new Date(11,9,2024);
+	d=null;
 
 
 
-	}
+}
 
 }
