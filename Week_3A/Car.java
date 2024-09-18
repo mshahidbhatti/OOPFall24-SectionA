@@ -20,7 +20,6 @@ class Car {
 		this.owner = owner;
 	}
 
-	//copy constructor
 	Car(Car car){
 
 		this.model = car.getModel();
