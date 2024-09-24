@@ -8,7 +8,7 @@ public class Driver{
 
 		System.out.println(d2);
 
-		if(d1.equals(d2))
+		if(d2.equals(d1))
 			System.out.println("Objects are equal");
 
 		Student st1 = new Student("student 1", "001", new Date(1,1,1));
