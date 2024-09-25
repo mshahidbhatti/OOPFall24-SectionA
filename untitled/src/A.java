@@ -1,16 +1,14 @@
-public class A{
+public class A {
+    int a;
 
-     int a = 20;
+    static int b;
 
+    {
+        System.out.println(""+b);
+    }
 
-public static void main(String args[]){
+    static {
+      //  System.out.println(""+a);
+    }
 
-    System.out.println("The value in a"+ a);
 }
-
-
-
-
-
-}
-
