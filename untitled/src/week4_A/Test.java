@@ -13,6 +13,8 @@ public class Test {
         Product p3 = new Product("ram",500);
         Product p5 = new Product(null,500);
         Product p4 = new Product();
+
+
         System.out.println(p1);
         System.out.println(p2);
         System.out.println(p3);
