@@ -12,6 +12,9 @@ public class Shop {
 
     private static double revenue;
 
+    {
+       // productList[0]=new Product();
+    }
     public Shop(Person owner, String address) {
         this.owner = owner;
         this.address = address;
@@ -43,6 +46,9 @@ public class Shop {
         System.out.print("Enter product ID: ");
         String id= scanner.nextLine();
 
+            int index= find(id);
+
+
         for(int i=0; i<productCount; i++){
 
             if(productList[i].getId().equals(id))
@@ -58,6 +64,20 @@ public class Shop {
         }
 
 
+    }
+
+
+    public int find(String name){
+        int index=-1;
+        for(int i=0; i<productCount; i++){
+                if(productList[i].getName().equalsIgnoreCase(name)) {
+                    index = i;
+                    break;
+                }
+
+        }
+
+        return index;
     }
 
 }
