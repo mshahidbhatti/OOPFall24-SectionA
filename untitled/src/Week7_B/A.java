@@ -1,2 +1,4 @@
-package Week7_B;public class A {
+package Week7_B;
+
+public class A {
 }

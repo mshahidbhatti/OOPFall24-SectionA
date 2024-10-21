@@ -1,2 +1,5 @@
-package Week7_B;public class B {
+package Week7_B;
+
+public class B extends A{
+
 }

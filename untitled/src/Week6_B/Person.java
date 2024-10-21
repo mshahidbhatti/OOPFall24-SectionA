@@ -1,2 +1,6 @@
-package Week6_B;public class Person {
+package Week6_B;
+
+public class Person {
+    String name;
 }
+

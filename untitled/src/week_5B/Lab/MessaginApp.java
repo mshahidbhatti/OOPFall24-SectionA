@@ -20,7 +20,7 @@ public class MessaginApp {
                 System.out.println("Sender: " + messages[i].getSender());
                 System.out.println("Receiver: " + messages[i].getReceiver());
                 System.out.println("Content: " + messages[i].getContent());
-                messages[i].setRead(true);
+              //  messages[i].setRead(true);
             }
     }
 

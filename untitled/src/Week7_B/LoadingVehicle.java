@@ -1,2 +1,4 @@
-package Week7_B;public class LoadingVehicle {
+package Week7_B;
+
+public class LoadingVehicle extends FourWheel{
 }

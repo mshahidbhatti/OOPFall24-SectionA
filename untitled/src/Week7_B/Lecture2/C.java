@@ -1,2 +1,5 @@
-package Week7_B.Lecture2;public class C {
+package Week7_B.Lecture2;
+
+public final class C {
+
 }

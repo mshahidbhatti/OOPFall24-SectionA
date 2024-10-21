@@ -5,6 +5,6 @@ public class MessageDriver {
         //Message message = new Message("Hello, World!");
         MessaginApp messageApp=new MessaginApp();
 
-        messageApp.sendMessage("sender","receiver","contents ",falses);
+      //  messageApp.sendMessage("sender","receiver","contents ",falses);
     }
 }
