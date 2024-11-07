@@ -1,2 +1,8 @@
-package Week8_A;public class Shape {
+package Week8_A;
+
+public abstract class Shape {
+    private String name;
+    private String color;
+
+    public abstract void displayShape();
 }

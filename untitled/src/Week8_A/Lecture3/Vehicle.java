@@ -1,2 +1,7 @@
-package Week8_A.Lecture3;public class Vehicle {
+package Week8_A.Lecture3;
+
+public abstract class Vehicle {
+
+
+    public abstract void drive();
 }

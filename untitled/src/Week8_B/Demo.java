@@ -68,7 +68,7 @@ public class Demo {
                 if (e instanceof CommissionEmployee)
                     commissionEmployeesCount++;
 
-                
+
             }
 
         }

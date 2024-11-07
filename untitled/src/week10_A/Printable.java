@@ -1,2 +1,8 @@
-package week10_A;public interface Printable {
+package week10_A;
+
+
+@FunctionalInterface
+public interface Printable {
+    void printThings();
+
 }

@@ -1,2 +1,4 @@
-package Week12_A.Lecture2;public interface Rsiky {
+package Week12_A.Lecture2;
+
+public interface Rsiky {
 }

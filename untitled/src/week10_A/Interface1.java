@@ -1,2 +1,7 @@
-package week10_A;public class Interface1 {
+package week10_A;
+
+public interface Interface1 {
+
+    void method1();
+    void method2();
 }
