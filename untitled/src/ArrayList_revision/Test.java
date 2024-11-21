@@ -106,10 +106,10 @@ public class Test {
         Set<Product> uniqueProd=new HashSet<Product>();
         uniqueProd.addAll(products);
 
-//        System.out.println();
-//        for(Product product : uniqueProd)
-//            System.out.println(product);
+        products.forEach(e-> System.out.println(e));
 
+       products.forEach(e-> e.setPrice(e.getPrice()+100));
+        displayProduct(products);
 
 
     }

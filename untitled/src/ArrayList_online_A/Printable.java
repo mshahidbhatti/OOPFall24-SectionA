@@ -1,2 +1,6 @@
-package ArrayList_online_A;public class Printable {
+package ArrayList_online_A;
+
+
+public interface Printable {
+    void printThings();
 }
