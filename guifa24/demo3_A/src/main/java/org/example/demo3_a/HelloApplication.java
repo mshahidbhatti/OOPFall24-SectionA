@@ -3,169 +3,123 @@ package org.example.demo3_a;
 import javafx.application.Application;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
-import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
-import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
-
 import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
-import java.io.IOException;
+import java.io.File;
 import java.util.ArrayList;
 
 public class HelloApplication extends Application {
     TextField nameTextField = new TextField();
+    static ArrayList<Candidate> candidateArrayList = new ArrayList<>();
 
-    static ArrayList<Candidate> candidateArrayList=new ArrayList<Candidate>();
     @Override
-    public void start(Stage stage) throws IOException {
-     //   FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("hello-view.fxml"));
-
+    public void start(Stage stage) {
         GridPane grid = new GridPane();
-       // Image image = new Image(this.getClass().getResource("/dataentry.png").toExternalForm());
-        Image image = new Image("file:C:\\temp\\oop\\OOPFall24-SectionA\\guifa24\\demo3_A\\src\\main\\resources\\dataentery.png");
-        ImageView imageView = new ImageView(image);
+        grid.setPadding(new Insets(10));
+        grid.setHgap(10);
+        grid.setVgap(10);
 
-        grid.add(imageView, 0, 0, 2,1);
-       // TextField nameTextField = new TextField();
-        Label nameLabel = new Label("Name");
+        // Banner Image
+        Image bannerImage = new Image("file:C:\\temp\\oop\\OOPFall24-SectionA\\guifa24\\demo3_A\\src\\main\\resources\\dataentery.png");
+        ImageView bannerImageView = new ImageView(bannerImage);
+        bannerImageView.setFitWidth(600);
+        bannerImageView.setFitHeight(150);
+        bannerImageView.setPreserveRatio(true);
+        grid.add(bannerImageView, 0, 0, 2, 1);
 
-        HBox nameHBox = new HBox();
-        nameHBox.setSpacing(10);
-        nameHBox.setBorder(new Border(new BorderStroke(
-                Color.WHITE,                  // Border color
-                BorderStrokeStyle.SOLID,      // Border style
-                CornerRadii.EMPTY,            // Corner radii
-                new BorderWidths(2, 4, 6, 8)  // Border widths (top, right, bottom, left)
-        )));
+        // Name Field
+        Label nameLabel = new Label("Name:");
+        nameTextField.setPrefWidth(200);
+        grid.add(nameLabel, 0, 1);
+        grid.add(nameTextField, 1, 1);
 
-        nameHBox.setPadding(new Insets(10));
-        nameHBox.getChildren().addAll(nameLabel, nameTextField);
-        grid.add(nameHBox, 0, 1, 1, 1);
-
+        // Date of Birth Field
+        Label dobLabel = new Label("Date of Birth:");
         DatePicker dobDatePicker = new DatePicker();
-        Label dobLabel = new Label("Date of Birth");
+        grid.add(dobLabel, 0, 2);
+        grid.add(dobDatePicker, 1, 2);
 
-        HBox dobHBox = new HBox();
-        dobHBox.setPadding(new Insets(10));
-        dobHBox.setSpacing(10);
-        dobHBox.getChildren().addAll(dobLabel, dobDatePicker);
-        dobHBox.setBorder(new Border(new BorderStroke(
-                Color.WHITE,                  // Border color
-                BorderStrokeStyle.SOLID,      // Border style
-                CornerRadii.EMPTY,            // Corner radii
-                new BorderWidths(2, 4, 6, 8)  // Border widths (top, right, bottom, left)
-        )));
-        grid.add(dobHBox, 1, 1, 1, 1);
-
-        RadioButton male=new RadioButton("Male");
-        RadioButton female=new RadioButton("Female");
-        ToggleGroup genderToggle=new ToggleGroup();
+        // Gender Selection
+        Label genderLabel = new Label("Gender:");
+        RadioButton male = new RadioButton("Male");
+        RadioButton female = new RadioButton("Female");
+        ToggleGroup genderToggle = new ToggleGroup();
         male.setToggleGroup(genderToggle);
         female.setToggleGroup(genderToggle);
+        HBox genderBox = new HBox(10, male, female);
+        grid.add(genderLabel, 0, 3);
+        grid.add(genderBox, 1, 3);
 
-        HBox genderHBox = new HBox();
-        genderHBox.setPadding(new Insets(10));
-        genderHBox.setSpacing(10);
-        genderHBox.getChildren().addAll(male, female);
-        genderHBox.setBorder(new Border(new BorderStroke(
-                Color.WHITE,                  // Border color
-                BorderStrokeStyle.SOLID,      // Border style
-                CornerRadii.EMPTY,            // Corner radii
-                new BorderWidths(2, 4, 6, 8)  // Border widths (top, right, bottom, left)
-        )));
-        grid.add(genderHBox, 0, 2, 2, 1);
-
-
-        Slider heightSlider = new Slider();
-
-        heightSlider.setPrefWidth(300);
-        heightSlider.setMin(100);
-        heightSlider.setMax(400);
-        heightSlider.setValue(175);
+        // Height Slider
+        Label heightLabel = new Label("Height (cm):");
+        Slider heightSlider = new Slider(100, 250, 175);
         heightSlider.setShowTickLabels(true);
+        heightSlider.setShowTickMarks(true);
+        heightSlider.setMajorTickUnit(50);
+        heightSlider.setMinorTickCount(5);
+        Label heightValueLabel = new Label(String.valueOf(heightSlider.getValue()));
+        heightSlider.valueProperty().addListener((observable, oldValue, newValue) ->
+                heightValueLabel.setText(String.format("%.1f", newValue.doubleValue()))
+        );
+        grid.add(heightLabel, 0, 4);
+        grid.add(heightSlider, 1, 4);
+        grid.add(heightValueLabel, 2, 4);
 
-        Label heightLabel =new Label("Height in cm");
-        HBox heightHBox = new HBox();
-        heightHBox.setPadding(new Insets(10));
-        heightHBox.setSpacing(10);
-        //heightLabel.setText("Height in cm");
-        Label heightLabelValue= new Label();
-        heightSlider.valueProperty().addListener(new ChangeListener<Number>() {
-            @Override
-            public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
-                heightLabelValue.setText(String.valueOf(heightSlider.getValue()));
-                //System.out.println(String.valueOf(heightSlider.getValue()));
+        // City Selection
+        Label cityLabel = new Label("City:");
+        ComboBox<String> cityComboBox = new ComboBox<>();
+        cityComboBox.getItems().addAll("New York", "London", "Paris", "Tokyo", "Sydney");
+        grid.add(cityLabel, 0, 5);
+        grid.add(cityComboBox, 1, 5);
+
+        // File Chooser for Image
+        Button fileChooserButton = new Button("Choose Image");
+        ImageView selectedImageView = new ImageView();
+        fileChooserButton.setOnAction(e -> {
+            FileChooser fileChooser = new FileChooser();
+            File selectedFile = fileChooser.showOpenDialog(stage);
+            if (selectedFile != null) {
+                Image selectedImage = new Image(selectedFile.toURI().toString());
+                selectedImageView.setImage(selectedImage);
+                selectedImageView.setFitWidth(150);
+                selectedImageView.setFitHeight(150);
+                selectedImageView.setPreserveRatio(true);
             }
         });
+        grid.add(fileChooserButton, 0, 6);
+        grid.add(selectedImageView, 1, 6);
 
+        // Submit Button
+        Button submitButton = new Button("Submit");
+        submitButton.setOnAction(e -> {
+            String gender = genderToggle.getSelectedToggle() != null
+                    ? ((RadioButton) genderToggle.getSelectedToggle()).getText()
+                    : "Not Selected";
 
-
-        heightLabel.setPrefWidth(100);
-        heightHBox.getChildren().addAll(heightSlider);
-
-        grid.add(heightLabelValue,1,3);
-
-        ComboBox<String> cityCombo = new ComboBox<String>();
-        cityCombo.getItems().addAll("New York", "London", "Paris", "Tokyo", "Sydney");
-        Label cityLabel = new Label("City");
-        HBox cityHBox = new HBox();
-        cityHBox.getChildren().addAll(cityLabel,cityCombo);
-
-        //FileChooser imageFileChooser = new FileChooser();
-        Image yourImage=new Image("file:C:\\temp\\oop\\OOPFall24-SectionA\\guifa24\\demo3_A\\src\\main\\resources\\logo.png");
-        ImageView imageView1=new ImageView(yourImage);
-
-
-
-        Button submitButton=new Button("Submit Data");
-        submitButton.setOnAction(e->{
-            System.out.println("Name: "+nameTextField.getText());
-            System.out.println("Date of Birth: "+dobDatePicker.getValue());
-            System.out.println("Gender: "+genderToggle.getSelectedToggle().getUserData());
-            System.out.println("Height: "+heightSlider.getValue());
-            System.out.println("City: "+cityCombo.getValue());
-            Candidate candidate=new Candidate(nameTextField.getText(),dobDatePicker.getValue().toString(),cityCombo.getValue());
-            candidateArrayList.add(candidate);
-            System.out.println("added successfully");
-            stage.setScene(getSecondScreenScene());
-
+            System.out.println("Name: " + nameTextField.getText());
+            System.out.println("Date of Birth: " + dobDatePicker.getValue());
+            System.out.println("Gender: " + gender);
+            System.out.println("Height: " + heightSlider.getValue());
+            System.out.println("City: " + cityComboBox.getValue());
         });
+        grid.add(submitButton, 0, 7);
 
-
-        grid.add(heightSlider, 0,3);
-        grid.add(cityHBox, 1, 2);
-        grid.add(submitButton, 1, 4);
-
-        //grid.add(imageView1,1,6);
-
-
-
-        Scene scene = new Scene(grid, 800, 800);
-        stage.setTitle("Hello!");
+        // Scene and Stage
+        Scene scene = new Scene(grid, 800, 600);
+        stage.setTitle("Data Entry Form");
         stage.setScene(scene);
         stage.show();
     }
 
     public static void main(String[] args) {
         launch();
-    }
-
-    public  Scene getSecondScreenScene(){
-        Stage secondStage = new Stage();
-        GridPane secondGrid = new GridPane();
-        secondGrid.add(new TextField( nameTextField.getText()),1,1);
-        Label secondLabel = new Label("This is the second screen");
-        secondGrid.add(secondLabel, 0, 0);
-        Scene secondScene = new Scene(secondGrid, 800, 800);
-        secondStage.setTitle("Second Screen");
-        secondStage.setScene(secondScene);
-        return secondScene;
     }
 }
